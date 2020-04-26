@@ -2,23 +2,26 @@ import logging
 
 import azure.functions as func
 
+from . import run
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info('HTTP Request received')
 
-    name = req.params.get('name')
-    if not name:
+    params = req.params.get('params')
+    
+    if not params:
         try:
             req_body = req.get_json()
         except ValueError:
             pass
         else:
-            name = req_body.get('name')
+            params = req_body.get('params')
 
-    if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+    if params:
+        resp = run.run(params)
+        return func.HttpResponse(resp)
     else:
         return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+             "params missing in request",
              status_code=200
         )
