@@ -1,0 +1,8 @@
+{
+  "azureFunctions.deploySubpath": ".",
+  "azureFunctions.scmDoBuildDuringDeployment": true,
+  "azureFunctions.projectLanguage": "Python",
+  "azureFunctions.projectRuntime": "~2",
+  "debug.internalConsoleOptions": "neverOpen",
+  "python.pythonPath": "/home/abhirath/Documents/projects/rests/metahouse/venv/bin/python3"
+}
